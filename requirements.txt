@@ -1,0 +1,14 @@
+# RL + environment
+gymnasium>=0.29
+stable-baselines3>=2.0
+torch>=2.0
+
+# Data + plotting
+numpy>=1.23
+pandas>=1.5
+matplotlib>=3.7
+seaborn>=0.12
+
+# Media (GIF export)
+imageio>=2.31
+Pillow>=9.5
