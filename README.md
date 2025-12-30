@@ -1,4 +1,4 @@
-# Assignment Project: SAC Prosthetic Control (Reacher-v4)
+# Assignment Project: SAC Prosthetic Control (Gymnasium)
 
 > **Disclaimer**  
 > This repository is primarily organized for a course/assignment submission. The implementation is **not production-quality**:
