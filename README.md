@@ -26,6 +26,7 @@ After running, your repository will look roughly like:
 .
 ├── SAC_Prosthetic_Control.py
 ├── plotting.py
+├── analysis.py
 ├── requirements.txt
 ├── README.md
 ├── logs/
@@ -79,6 +80,34 @@ This script will:
 ```bash
 python plotting.py
 ```
+
+### 3) Quantitative Analysis & Ablation Study
+
+To rigorously evaluate the impact of motor damage and the effectiveness of neuroplasticity (Phase 3 adaptation), we included a dedicated analysis script `analysis.py`. This script loads the pre-trained models (Phase 1 & Phase 3) and performs two key experiments:
+
+### A. Performance Recovery (Bar Chart)
+We compare the agent's performance across three distinct conditions (averaged over 30 episodes):
+1.  **Normal (Phase 1):** The baseline performance of the healthy agent.
+2.  **Damaged (Phase 2):** The "Zero-shot" performance of the Phase 1 agent when suddenly exposed to motor faults (Bias=0.3, Weakness=1.0). This quantifies the severity of the failure.
+3.  **Recovered (Phase 3):** The performance of the adapted agent after "rehabilitation" training. A return to near-baseline levels demonstrates successful adaptation.
+
+**Generated File:** `quant_comparison.png`
+
+### B. Sensitivity Analysis (Ablation Study / Heatmap)
+To understand which fault factor (Bias vs. Weakness) is more critical, we conducted a grid-search sensitivity analysis on the Phase 1 model.
+- **X-axis:** Bias magnitude (0.0 to 0.5)
+- **Y-axis:** Weakness factor (1.0 to 0.4)
+- **Metric:** Mean Episode Reward
+
+The resulting heatmap reveals the "breaking point" of the control policy and highlights that **systematic bias (drift)** is often more detrimental to the standard SAC policy than torque weakness.
+
+**Generated File:** `sensitivity_heatmap.png`
+
+### How to Run the Analysis
+Ensure `brain_phase1.zip`, `brain_phase3_adapted.zip`, and their corresponding `.pkl` stats files are in the root directory, then run:
+
+```bash
+python analysis.py
 
 ---
 
